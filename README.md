@@ -15,6 +15,4 @@
    主动方发送数据给服务器，服务器要主动发送给被动方，这就是一种客户端与服务器端双向通信技术--socket
 
 ## 运行效果图
-![avatar](https://i.niupic.com/images/2019/02/28/5PpJ.jpg)
-![avatar](https://i.niupic.com/images/2019/02/28/5PpJ.jpg)
 ![avatar](https://i.niupic.com/images/2019/02/28/5PrV.jpg)
