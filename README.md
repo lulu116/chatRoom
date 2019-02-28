@@ -20,5 +20,5 @@
 * 项目运行 npm start(node server.js)
 * 运行成功会在后台控制台进行输出信息，同时自动打开默认浏览器
 ## 效果图
-![avatar](https://i.niupic.com/images/2019/02/28/5PrV.jpg)
-![avatar](https://i.niupic.com/images/2019/02/28/5Ps4.jpg) 
+![登录](https://i.niupic.com/images/2019/02/28/5Ps9.jpg)
+![聊天面板](https://i.niupic.com/images/2019/02/28/5Ps4.jpg) 
