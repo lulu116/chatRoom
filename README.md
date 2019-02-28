@@ -14,5 +14,10 @@
    ，来查看当前游戏的战况。我们的游戏是实时的，必须是实时自动获取最新信息。因此这里的需求就是让通信双方之间的通信要实时，
    主动方发送数据给服务器，服务器要主动发送给被动方，这就是一种客户端与服务器端双向通信技术--socket
 
-## 运行效果图
+## 项目运行
+* 项目运行之前需要安装[node.js](https://nodejs.org/en/)、[Git](https://git-scm.com/)
+* 下载依赖 cnpm i / yarn add 
+* 项目运行 npm start(node server.js)
+* 运行成功会在后台控制台进行输出信息，同时自动打开默认浏览器
+## 效果图
 ![avatar](https://i.niupic.com/images/2019/02/28/5PrV.jpg)
