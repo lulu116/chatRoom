@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>基于node.js的实时在线聊天室</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+
+<body>
+   <!-- <div id="container">
+        <div id="login_box">
+            <input type="text" id="nickname" placeholder="名称必填...">
+            <button id="enter_btn">进入聊天室</button>
+        </div>
+        <div id="chat_box">
+            <div id="top_box">
+                <div id="room_name">
+                    兰陵王打野技术交流群
+                </div>
+            </div>
+            <div id="close_btn">X</div>
+            <div id="bottom_box">
+                <div id="left">
+                    <div id="display_box">
+                    </div>
+                    <div id="input_box">
+                        <input type="text" id="content" placeholder="没事儿就爱瞎聊~">
+                        <button id="send_btn">发送</button>
+                    </div>
+                </div>
+                <div id="right">
+                    <ul id="online_users">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>-->
+   <div id="container">
+       <div id="login_box">
+           <input type="text" id="nickname" placeholder="名称必填...">
+           <button id="enter_btn">进入聊天室</button>
+       </div>
+       <div id="chat_box">
+           <div id="left">
+               <div class="icon-container">
+                   <img src="https://i.niupic.com/images/2018/08/10/5yxS.jpg" />
+               </div>
+               <!--个人简介-->
+               <div class="self-container">
+                   <div class="content">
+                       <!--姓名-->
+                       当前用户：<div class="name">姓名</div>
+                   </div>
+
+               </div>
+
+               <!--聊天室说明-->
+               <div class="note-container">
+                   聊天室简介：
+                   <div class="note-container-content">
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大另因国加加国 国加大另因国加加国 国加大另因国加加国 国加大另因国加加国 国加大另因国加加国 国加大另因国加加国 国加大另因国加加国 国加
+                   </div>
+               </div>
+           </div>
+           <div id="right">
+               <!--顶部固定导航-->
+               <div class="head">聊天室(<span id="count">0</span>)</div>
+
+               <!--聊天记录-->
+               <div class="chat-container">
+
+               </div>
+
+               <!--底部输入框-->
+               <div class="input-container">
+
+                   <div class="input-content">
+                       <input id="msg" autofocus="autofocus" value="" oninput="inputMessage()" placeholder="请输入聊天内容…" />
+                       <div class="num">0/30</div>
+                   </div>
+
+                   <div class="send" id="send_btn">发送</div>
+
+               </div>
+
+           </div>
+       </div>
+   </div>
+    <!--jquery框架-->
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+    <!--socket.io-client-->
+    <script src="/socket.io/socket.io.js"></script>
+    <!--客户端逻辑-->
+    <script src="js/chat.js"></script>
+</body>
+
+</html>
+<script>
+    const maxInput = 30; //输入内容的最大长度
+    /**
+     * 输入消息
+     */
+    function inputMessage() {
+        const msg = $("#msg").val();
+        const length = $("#msg").val().length;
+        if(length > maxInput) {
+            // 截取前30个字符
+            $("#msg").val(msg.substr(0, maxInput));
+            $(".num").text(maxInput + '/' + maxInput);
+        } else {
+            const text = length + '/' + maxInput;
+            $(".num").text(text);
+        }
+    }
+</script>
+

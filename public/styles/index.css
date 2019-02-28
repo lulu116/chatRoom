@@ -1,0 +1,285 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /*主轴方向*/
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*登录界面结构*/
+
+#login_box {
+    width: 250px;
+    height: 130px;
+    display: flex;
+    border: 40px solid deepskyblue;
+    background-color: rgba(255, 235, 50, 0.7);
+    box-shadow: 8px 8px 30px 8px gray;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#nickname,
+#enter_btn {
+    width: 200px;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*登录界面结束*/
+
+
+/*聊天界面结构开始*/
+
+#chat_box {
+    width: 1000px;
+    height: 600px;
+    display: none;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    opacity: 0.7;
+    box-shadow: 0 0 3px 3px #ddd;
+}
+#left {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #ebebeb;
+}
+.icon-container {
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #aaa, 0 0 4px 4px #3c4149;
+}
+.icon-container img:hover {
+    transform: rotate(360deg) scale(1.2);
+    transition: all 0.6s ease-in-out;
+}
+.self-container {
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 60px;
+}
+
+.self-container .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 18px;
+    font-weight: 700;
+    color: #001d1d;
+}
+#right .chat-container .message-self,
+#right .chat-container .message-other {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#right .chat-container .message-self {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+#right .chat-container .message-other {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /*justify-content: flex-start;*/
+}
+
+#right .chat-container .message-container {
+    max-width: 80%;
+    /*height: auto;*/
+    display: flex;
+    flex-direction: row;
+    /*box-sizing: border-box;*/
+}
+
+#right .chat-container .message-self .message-container .message-content {
+    padding-right: 10px;
+}
+
+#right .chat-container .message-other .message-container .message-content {
+    padding-left: 10px;
+}
+
+#right .chat-container .message-self .message-container .message-content .message {
+    background-color: blue;
+    color: white;
+}
+
+#right .chat-container .message-other .message-container .message-content .message {
+    background-color: white;
+    color: black;
+}
+
+#right .chat-container .message-container .message-content .name {
+    font-size: 12px;
+    padding: 5px 0;
+    color: #888888;
+}
+
+#right .chat-container .message-self .message-container .message-content .name {
+    text-align: right;
+}
+
+#right .chat-container .message-other .message-container .message-content .name {
+    text-align: left;
+}
+
+#right .chat-container .message-container .message-content .message {
+    border-radius: 10px;
+    padding: 10px;
+}
+#right .chat-container .message-container .icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+#right .chat-container .notify-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#right .chat-container .notify-container .notify {
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #999999;
+    opacity: 0.9;
+    font-size: 12px;
+    color: white;
+}
+.note-container {
+    height: 45%;
+    padding: 10px;
+    line-height: 1.5em;
+}
+.note-container .note-container-content {
+    padding: 5px;
+}
+#right {
+    width: 75%;
+    height: 100%;
+    background-color: #fff;
+}
+#right .head {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 20px;
+    font-weight: 700;
+    color: #323232;
+}
+
+#right .chat-container {
+    padding: 10px;
+    height: 80%;
+    overflow-y: scroll;
+    background-color: #F5F5F5;
+    background-image: url(https://i.niupic.com/images/2019/02/27/5Pj2.jfif);
+    box-sizing: border-box;
+    background-size: cover;
+}
+
+#right .input-container {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: blue;
+    font-size: 18px;
+}
+
+#right .input-container .input-content {
+    position: relative;
+    width: 85%;
+    background-color: white;
+}
+
+#right .input-container .input-content input {
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    /* 去除input框外边框  */
+    outline: none;
+    font-size: 18px;
+}
+
+#right .input-container .input-content .num {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 1));
+    color: #3333335e;
+}
+
+#right .input-container .input-content input::-webkit-input-placeholder {
+    font-size: 18px;
+}
+
+#right .input-container .send {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #cbcbcb;
+    font-weight: bold;
+    color: #333333;
+    cursor: pointer;
+}
+#right .input-container .send:hover {
+    background-color: #a5a5a5;
+    transition: all 1s ease-in-out;
+}
