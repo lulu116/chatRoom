@@ -21,4 +21,4 @@
 * 运行成功会在后台控制台进行输出信息，同时自动打开默认浏览器
 ## 效果图
 ![avatar](https://i.niupic.com/images/2019/02/28/5PrV.jpg)
-![avatar](https://i.niupic.com/images/2019/02/28/5Ps4.jpg =200x)
+![avatar](https://i.niupic.com/images/2019/02/28/5Ps4.jpg {width=40px height=400px}) 
