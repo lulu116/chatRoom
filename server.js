@@ -26,54 +26,60 @@ let totalCount = 0;
 //Socket.io：1.一个服务端集成到node.js http服务器 socket.io 2.一个加载到浏览器中的客户端socket.io-client
 //监听connection事件，接收来自客户端的sockets，并打印到控制台
 io.on('connection', function(socket){
-    console.log('a user connected')
+    console.log('当前有用户连接')
+    let name = '';
+    count++;
+    totalCount++;
     //接收用户进入的事件
     socket.on("enter", function(nickname) {
-        console.log(nickname + "加入了群聊");
-        if(online_users.indexOf(nickname) > -1) {
-          // 当前用户已经存在
-          socket.emit("enter-result", "no");
-        } else {
-          count++;
-          totalCount++;
-          socket.emit('enter-result', 'ok');
-          //将昵称存放在用户对应的socket里面
-          socket.nickname = nickname;
-          //将该用户的昵称保存到在线的数组中
-          online_users.push(nickname);
-          //通知所有的用户，有人进来了
-          io.sockets.emit("user-change", {
-              name: online_users,
-              action: '加入了群聊',
-              count: count
-          });
-        }
+        console.log(nickname,"加入了群聊");
+        socket.emit('enter-result', 'ok');
+        //将昵称存放在用户对应的socket里面
+        socket.nickname = nickname;
+        name = nickname;
+        //将该用户的昵称保存到在线的数组中
+        online_users.push(nickname);
+        //给公众发消息
+        socket.broadcast.emit("joinNoticeOther", {
+            name: name,
+            action: "加入了群聊",
+            count: count
+        });
+        //给自己发消息
+        socket.emit("joinNoticeSelf", {
+            count: count,
+            id: totalCount
+        });
     });
     //用户聊天信息监听
     socket.on("message", function(message) {
-        console.log(message.name + "加入了群聊");
         //将信息转发给所有的用户,并携带发送信息的用户昵称
         const msg = {
-            name: message.name,
-            action: "加入了群聊",
-            count: count
+            name: name,
+            msg: message.content
         }
         io.sockets.emit("user-message", msg);
     });
-    // 用户离开时监听
-    socket.on("leave", function () {
-        // 找到当前要离开 的人的位置，
-        var index = online_users.indexOf(socket.nickname);
-
-        // 移除此人
-        online_users.splice(index, 1);
-        //通知其他人，有人离开了
-        socket.broadcast.emit("user-change", online_users);
-
-    })
+   /* // 监听到连接断开
+    socket.on("leave", function() {
+        count--;
+        console.log(name,"离开了群聊1111111111")
+        io.emit("leaveNoticeOther", {
+            count: count,
+            name: name,
+        });
+    });*/
+    socket.on("disconnect", function() {
+        count--;
+        console.log(name + "离开了群聊")
+        io.emit("disconnection", {
+            count: count,
+            name: name
+        });
+    });
 })
 
 // 启动监听，端口9000
 http.listen(9000, function(){
-  console.log('listening on *: 9000')
+    console.log('listening port: 9000')
 })

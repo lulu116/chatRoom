@@ -34,7 +34,6 @@ function initSocket() {
     });
     //接收服务器转发的信息
     socket.on("user-message", function(message) {
-debugger
         var rightUserMsg = $('<div class="message-self"><div class="message-container"><div class="message-content"><div class="name">'+message.name+'</div><div class="message">'+message.msg+'</div></div><div class="icon"><img src="'+icon+'" /></div></div></div>')
         var leftUserMsg = $('<div class="message-other"><div class="message-container"><div class="icon"><img src="'+icon+'" /></div><div class="message-content"><div class="name">'+message.name+'</div><div class="message">'+message.msg+'</div></div></div></div>')
         if (message.name === mynickname) {
@@ -49,16 +48,41 @@ debugger
 
 
     });
-    socket.on("user-change", function(message) {
-        $("#count").text(message.count);
+    //公众接收信息
+    socket.on("joinNoticeOther", function(message) {
+        $("#count").text(message.count); //当前房间人数
         const msg = {
             name: message.name,
             action: message.action
         }
         notify(msg);
     });
+    //自己接收信息
+    socket.on("joinNoticeSelf", function(message) {
+        $("#count").text(message.count);
+        $('#user_id').text(message.id)
+    });
+    /*// 断开连接回调事件
+    socket.on("leaveNoticeOther", function(message) {
+        console.log('1111111',message)
+        $("#count").text(message.count);
+        const notifyMessage = {
+            name: message.name,
+            action: "退出了群聊"
+        };
+        notify(notifyMessage);
+    });*/
+    // 断开连接回调事件
+    socket.on("disconnection", function(message) {
+        console.log(message);
+        $("#count").text(message.count);
+        const notifyMessage = {
+            name: message.name,
+            action: "退出了群聊"
+        };
+        notify(notifyMessage);
+    });
 }
-
 
 //初始化元素
 function initElements() {
@@ -82,8 +106,7 @@ function initElements() {
             return;
         }
         const message = {
-            name: mynickname,
-            msg: content
+           content
         };
         $("#msg").val('');
         //将内容发送给服务器
@@ -91,10 +114,10 @@ function initElements() {
 
     });
 
-    $("#close_btn").click(function() {
+    $("#head-right").click(function() {
 
         //发送离开信息给服务器
-        socket.emit("leave");
+        socket.emit("disconnect");
         //重新加载页面
         location.reload();
     });
@@ -102,7 +125,7 @@ function initElements() {
     $(window).unload(function() {
 
         //发送离开信息给服务器
-        socket.emit("leave");
+        socket.emit("disconnect");
 
     });
 
