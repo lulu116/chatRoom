@@ -6,7 +6,7 @@ var app = express(); // express本质调用了createApplication()方法且调用
 const path = require('path');
 var http = require('http').Server(app); // 将express注册到http中
 var io = require('socket.io')(http); // 传入http服务器对象来初始化socket.io的实例
-
+var cp = require('child_process'); // 自动打开浏览器
 // 当访问根目录时，响应的内容 hello node.js
 // app.get('/', function(req, res){
 //   // res.send('<h1>hello node.js!<h1>')
@@ -80,6 +80,6 @@ io.on('connection', function(socket){
 })
 
 // 启动监听，端口9000
-http.listen(9000, function(){
-    console.log('listening port: 9000')
-})
+http.listen(9000, '127.0.0.1');
+console.log("Server running at http://127.0.0.1:9000/");
+cp.exec('start http://127.0.0.1:9000/'); //自动打开默认浏览器
