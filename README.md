@@ -16,7 +16,7 @@
 
 ## 项目运行
 * 项目运行之前需要安装[node.js](https://nodejs.org/en/)、[Git](https://git-scm.com/)
-* 下载依赖 cnpm i / yarn add 
+* 下载依赖 cnpm i / yarn install
 * 项目运行 npm start(node server.js)
 * 运行成功会在后台控制台进行输出信息，同时自动打开默认浏览器
 ## 效果图
